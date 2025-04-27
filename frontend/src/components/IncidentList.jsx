@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState, useEffect } from 'react'
+import { Link } from 'react-router-dom'
 import { 
   List, 
   ListItem, 
@@ -9,51 +9,50 @@ import {
   Button,
   Chip,
   Box
-} from '@mui/material';
-import { Delete, Add, Visibility } from '@mui/icons-material';
-import { getIncidents, deleteIncident } from '../services/api';
+} from '@mui/material'
+import { Delete, Add, Visibility } from '@mui/icons-material'
+import { getIncidents, deleteIncident } from '@/services/api'
 
 const IncidentList = () => {
-  const [incidents, setIncidents] = useState([]);
+  const [incidents, setIncidents] = useState([])
 
   useEffect(() => {
-    fetchIncidents();
-  }, []);
+    fetchIncidents()
+  }, [])
 
   const fetchIncidents = async () => {
     try {
-      const response = await getIncidents();
-      setIncidents(response.data);
+      const { data } = await getIncidents()
+      setIncidents(data)
     } catch (error) {
-      console.error('Error fetching incidents:', error);
+      console.error('Error fetching incidents:', error)
     }
-  };
+  }
 
   const handleDelete = async (id) => {
     try {
-      await deleteIncident(id);
-      fetchIncidents();
+      await deleteIncident(id)
+      fetchIncidents()
     } catch (error) {
-      console.error('Error deleting incident:', error);
+      console.error('Error deleting incident:', error)
     }
-  };
+  }
 
   const getSeverityColor = (severity) => {
     switch (severity) {
-      case 'High': return 'error';
-      case 'Medium': return 'warning';
-      case 'Low': return 'success';
-      default: return 'default';
+      case 'High': return 'error'
+      case 'Medium': return 'warning'
+      case 'Low': return 'success'
+      default: return 'default'
     }
-  };
+  }
 
   return (
-    <Paper elevation={3} sx={{ padding: 3, margin: 2 }}>
+    <Paper elevation={3} sx={{ p: 3 }}>
       <Box display="flex" justifyContent="space-between" alignItems="center" mb={3}>
         <Typography variant="h4">AI Safety Incidents</Typography>
         <Button 
           variant="contained" 
-          color="primary" 
           startIcon={<Add />}
           component={Link}
           to="/new"
@@ -65,7 +64,7 @@ const IncidentList = () => {
       <List>
         {incidents.map((incident) => (
           <ListItem 
-            key={incident._id} 
+            key={incident._id}
             secondaryAction={
               <>
                 <Button 
@@ -106,7 +105,7 @@ const IncidentList = () => {
         ))}
       </List>
     </Paper>
-  );
-};
+  )
+}
 
-export default IncidentList;
+export default IncidentList
