@@ -44,7 +44,6 @@ PORT=5000
 node seed.js
 
 ### Start the backend server:
-bash
 node server.js
 Frontend Setup
 
@@ -55,7 +54,7 @@ cd ../frontend
 npm install
 
 ### Start the frontend development server:
-npm start
+npm run dev
 
 
 ### API Endpoints
@@ -84,7 +83,7 @@ View, create, or delete incidents through the UI
    node server.js
 ### In another terminal:
 cd frontend
-npm start
+npm run dev
 
 ### The application will be available at http://localhost:3000 with the API running on http://localhost:5000.
 
